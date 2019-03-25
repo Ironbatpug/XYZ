@@ -24,10 +24,22 @@ class ViewController: UIViewController {
         motionManager.startAccelerometerUpdates(to: .main, withHandler: updateLabels)
     }
     
-        func updateLabels(data: CMAccelerometerData?,error:  Error?) {
-            guard  let accelometerData = data else { return}
-            print(accelometerData)
-            }
+    func updateLabels(data: CMAccelerometerData?,error:  Error?) {
+        guard  let accelometerData = data else { return}
+        
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        
+        let x = formatter.string(for: accelometerData.acceleration.x)!
+        let y = formatter.string(for: accelometerData.acceleration.y)!
+        let z = formatter.string(for: accelometerData.acceleration.z)!
+
+        xLabel.text = "X: \(x)"
+        xLabel.text = "Y: \(y)"
+        xLabel.text = "Z: \(z)"
+
+    }
 }
 
 
